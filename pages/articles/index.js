@@ -17,7 +17,7 @@ function Articles ({ ArticleList = [], ...props }) {
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
 			
-			文章
+			文章列表
 			
 			<div onClick={ () => test() }>DEBUG</div>
 			
