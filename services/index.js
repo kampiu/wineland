@@ -1,9 +1,5 @@
 /*
- * @Author: KAM
- * @Date: 2019-11-09 11:55:19
- * @LastEditTime: 2019-12-04 15:04:04
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @module 获取文章里表
  */
 import request from "../plugins/request"
 import API from "./modules"

@@ -1,22 +1,43 @@
 import Head from "next/head"
-import styles from "../styles/Home.module.css"
-import { BoxStyle } from "../assets/style/style"
+import BaseLayout from "layouts/BaseLayout"
+import SpecialContainer from "components/Home/SpecialContainer"
+import ArticleItem from "components/Article/ArticleItem"
+import ModuleContainer from "components/Home/ModuleContainer"
+import Service from "Service"
 
-export default function Home () {
-	
-	function test(){
-		console.log(process.env)
-		console.log(process.env.NEXT_PUBLIC_API)
-	}
+function Home ({ Special = [], Articles = [], ...props }) {
 	
 	return (
-		<div className={ styles.container }>
+		<>
 			<Head>
-				<title>Create Next App</title>
+				<title>BiuBiuKam 博客</title>
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
 			
-			<BoxStyle onClick={ () => test() }/>
-		</div>
+			<ModuleContainer title="专题">
+				<SpecialContainer special={ Special }/>
+			</ModuleContainer>
+			
+			<ModuleContainer title="文章">
+				{
+					Articles.map(item => <ArticleItem key={ item.id } itemData={ item }/>)
+				}
+			</ModuleContainer>
+		</>
 	)
 }
+
+export async function getServerSideProps ({ context }) {
+	// 调用外部 API 获取首页聚合数据
+	const { status, data = {} } = await Service["Common/GetHomeAggregateData"]()
+	
+	return {
+		props: {
+			Special: data.special || [],
+			Articles: data.articles || [],
+			status
+		},
+	}
+}
+
+export default BaseLayout(Home)

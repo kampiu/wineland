@@ -5,9 +5,17 @@
 			"module-resolver",
 			{
 				"alias": {
-					"Utilities": "./assets/style"
+					"Styles": "./assets/style",
+					"Service": "./services",
+					"layouts": "./layouts",
+					"components": "./components",
+					"assets": "./assets"
 				}
 			}
+		],
+		[
+			"styled-components",
+			{ "ssr":true }
 		]
 	]
 }

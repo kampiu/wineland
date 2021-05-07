@@ -1,7 +1,7 @@
 import styled from "styled-components"
+import { ScreenXs, ScreenSm, ScreenMd, ScreenLg, ScreenMax } from "Styles"
 
-
-export const HeaderStyle = styled.div`
+export default styled.div`
 	width: 100%;
 	height: 60px;
 	background-color: #FFF;
@@ -129,6 +129,156 @@ export const HeaderStyle = styled.div`
 			transform: translateY(50%);
 			margin: 0;
 		}
+	}
+	
+	@media (max-width: ${ ScreenXs }) {
+		.header-body {
+            width: 100%;
+            padding: 0 0;
+        }
+		.header-logo {
+			background-position: 10px center;
+			background-size: 30px 30px;
+			font-size: 20px;
+		}
+		
+		.header-button {
+			display: flex;
+		}
+		
+		.header-main {
+			width: 100%;
+			position: fixed;
+			left: 0;
+			top: 0;
+			z-index: 1000;
+			
+			li {
+				width: 100%;
+			}
+		}
+	
+		.header-menu {
+			transform: translateY(-300px);
+			width: 100%;
+			transition: all linear 0.2s;
+			flex-direction: column;
+		
+			li {
+				width: 100%;
+				height: 50px;
+				display: flex;
+				margin: 0;
+			}
+		}
+	
+		.header-menu-active {
+			position: fixed;
+			transition: all linear 0.2s;
+			top: 0;
+			left: 0;
+			transform: translateY(60px);
+		}
+	}
+	
+	// 480 ~ 768
+	@media (min-width: ${ ScreenXs }) {
+		.header-body {
+            width: 100%;
+        }
+		.header-button {
+			display: flex;
+		}
+		
+		.header-main {
+			width: 100%;
+			position: fixed;
+			padding-left: 20px;
+			left: 0;
+			top: 0;
+			z-index: 1000;
+		
+			li {
+				width: 100%;
+			}
+		}
+		
+		.header-menu {
+			transform: translateY(-300px);
+			width: 100%;
+			flex-direction: column;
+		
+			li {
+				width: 100%;
+				height: 50px;
+				display: flex;
+				margin: 0;
+			}
+		
+			.header-menu-active {
+				position: fixed;
+				transition: all linear 0.2s;
+				top: 0;
+				left: 0;
+				transform: translateY(60px);
+			}
+		}
+	}
+	
+	// 768
+	@media (min-width: ${ ScreenSm }) {
+        .header-body {
+            width: 90%;
+            padding: 0 12px;
+        }
+		.header-button {
+			display: none;
+		}
+		
+		.header-main {
+			width: auto;
+			position: relative;
+			flex-direction: row;
+		}
+		
+		.header-menu {
+			width: auto;
+			transition: none;
+			transform: translateY(0);
+			flex-direction: row;
+		
+			li {
+				width: auto;
+				margin: 0 4px 0 28px;
+			}
+		}
+	
+		.header-menu-active {
+			position: relative;
+		}
+	}
+	// 768
+    @media (min-width: ${ ScreenMd }) {
+        .header-body {
+            width: 98%;
+            padding: 0 12px;
+        }
+	}
+	
+	// 1200
+	@media (min-width: ${ ScreenLg }) {
+        .header-body {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0;
+        }
+	}
+	
+	// 1920
+	@media (min-width: ${ ScreenMax }) {
+        .header-body {
+            width: 1200px;
+        }
 	}
 `
 

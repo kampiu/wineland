@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { HeaderStyle } from "./style"
+import React from "react"
+import HeaderStyle from "./style"
 import Link from "next/link"
 
 function Header(){
@@ -9,7 +9,7 @@ function Header(){
 			<HeaderStyle>
 				<div className="header-body">
 					<div className="header-main">
-						<div className="header-logo">Billson</div>
+						<div className="header-logo">BiuBiuKam</div>
 						<div className="header-button">
 							<span />
 							<span />
@@ -19,8 +19,13 @@ function Header(){
 					</div>
 					<ul className="header-menu">
 						<li>
+							<Link href="/">Home</Link>
+						</li>
+						<li>
 							<Link href="/articles">Articles</Link>
-							<Link href="ddf">sfsdf</Link>
+						</li>
+						<li>
+							<Link href="/about">About</Link>
 						</li>
 					</ul>
 				</div>

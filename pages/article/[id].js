@@ -1,15 +1,17 @@
+import React, { useState, useEffect } from "react"
 import Head from "next/head"
-import styled from "styled-components"
+import BaseLayout from "layouts/BaseLayout"
+import MarkDown from "components/Common/MarkDown"
+import ArticleDetailContainer from "components/Article/ArticleDetailContainer"
 
-const ContainerStyle = styled.div`
-	width: 100px;
-	height: 100px;
-	background-color: red;
-`
-
-export default function Article ({ Article = {}, ...props }) {
+function Article ({ Article = {}, ...props }) {
+	
+	const [ArticleInfo, setArticleInfo] = useState({
+		context: ""
+	})
+	
 	return (
-		<div>
+		<>
 			<Head>
 				<title>{ Article.title }</title>
 				<link rel="icon" href="/favicon.ico"/>
@@ -17,18 +19,13 @@ export default function Article ({ Article = {}, ...props }) {
 				<meta name="description" content={ Article.describe }/>
 			</Head>
 			
-			
-			<div onClick={ () => console.log(Article) }>DEBUG</div>
-			
-			<div>
-				{
-					Article.content_md
-				}
-			</div>
-		</div>
+			<ArticleDetailContainer article={ Article } />
+		
+		</>
 	)
 }
 
+// getStaticProps   getServerSideProps
 export async function getServerSideProps ({ params = {}, context }) {
 	
 	const { id } = params
@@ -44,3 +41,5 @@ export async function getServerSideProps ({ params = {}, context }) {
 		},
 	}
 }
+
+export default BaseLayout(Article)

@@ -1,53 +1,53 @@
 import Head from "next/head"
 import Link from "next/link"
-import CommonLayout from "./../../layouts/CommonLayout"
-import Service from "./../../services"
+import BaseLayout from "layouts/BaseLayout"
+import NavigationMenu from "components/Article/NavigationMenu"
+import ArticleItem from "components/Article/ArticleItem"
+import ModuleContainer from "components/Home/ModuleContainer"
+import Service from "Service"
 import throttle from "lodash/throttle"
 
-function Articles ({ ArticleList = [], ...props }) {
+function Articles ({ ArticleList = [], AppConfig = {}, ...props }) {
 	
 	const test = throttle(() => {
-		console.log("点击我了")
+		console.log("点击我了", props)
 	}, 2000)
 	
 	return (
-		<div>
+		<>
 			<Head>
-				<title>Create Next Appsdfsd</title>
+				<title>文章列表</title>
 				<link rel="icon" href="/favicon.ico"/>
 			</Head>
 			
-			文章列表
+			<NavigationMenu tags={ AppConfig.tags } />
 			
-			<div onClick={ () => test() }>DEBUG</div>
-			
-			<ul>
+			<ModuleContainer>
 				{
 					ArticleList.map(item => {
-						
 						return (
-							<li key={ item.id }><Link href={ `/article/${ item.id }` }>{ item.title }</Link></li>
+							<ArticleItem key={ item.id } itemData={item} />
 						)
 					})
 				}
-			
-			</ul>
+			</ModuleContainer>
 		
-		</div>
+		</>
 	)
 }
 
-export async function getServerSideProps ({ context }) {
+export async function getServerSideProps ({ context, query, ...props }) {
 	// 调用外部 API 获取博文列表
-	const { status, data = {} } = await Service["Article/GetArticleList"]()
-	
+	const { status, data = {} } = await Service["Article/GetArticleList"]({
+		tags: query.tag
+	})
 	
 	return {
 		props: {
 			ArticleList: data.data,
-			ArticleStatus: status
+			ArticleStatus: status,
 		},
 	}
 }
 
-export default CommonLayout(Articles)
+export default BaseLayout(Articles)

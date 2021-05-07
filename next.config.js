@@ -1,4 +1,4 @@
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin")
 const path = require("path")
 
 const DevelopmentConfig = require("./config/config.development")
@@ -7,12 +7,16 @@ const ProductionConfig = require("./config/config.production")
 const resolve = (dir) => path.resolve(__dirname, dir)
 
 const DefaultConfig = {
+	productionBrowserSourceMaps: true,      // 开启 SourceMap
+	images: {
+		domains: ["image.billson.club"],
+	},
 	env: {
 		// NEXT_PUBLIC_API: "aaaaa"
 	},
 	webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
 		
-		config.plugins.push( new LodashModuleReplacementPlugin() )
+		config.plugins.push(new LodashModuleReplacementPlugin())
 		
 		return config
 	},
