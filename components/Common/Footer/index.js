@@ -73,7 +73,7 @@ function Footer ({
 					</div>
 				</FooterBackgroundStyle>
 				{/*Copyright © 2019-2020 野胡子的独立博客. 琼ICP备19001769号*/ }
-				<div className="footer-wrapper">{ copyright }</div>
+				<div className="footer-wrapper"><a href="https://beian.miit.gov.cn/">{ copyright }</a></div>
 			</FooterStyle>
 		</>
 	)

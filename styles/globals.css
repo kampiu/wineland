@@ -96,3 +96,21 @@ input::-webkit-search-cancel-button {
 		background-position: 1000px 0;
 	}
 }
+
+@keyframes Test {
+	0%{
+		display: inline-block;
+		background-color: rgba(0, 0, 0, 0);
+		z-index: -1000;
+	}
+	10%{
+		display: inline-block;
+		background-color: rgba(0, 0, 0, 0);
+		z-index: -1000;
+	}
+	100%{
+		display: inline-block;
+		background-color: rgba(0, 0, 0, 0.75);
+		z-index: 300;
+	}
+}

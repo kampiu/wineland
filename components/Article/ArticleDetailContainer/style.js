@@ -1,6 +1,30 @@
 import styled from "styled-components"
 import { ScreenXs, ScreenMd, ScreenLg, fontBreak } from "Styles"
 
+export const RecommendStyle = styled.div`
+    width: 100%;
+    overflow: hidden;
+    background-color: #FFF;
+    margin-bottom: 20px;
+    padding-left: 20px;
+
+    .nav-header {
+        width: 100%;
+        height: 56px;
+        display: flex;
+        padding: 0 20px 0 0;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .nav-body {
+        width: 100%;
+        padding: 10px 0;
+        overflow: hidden;
+    }
+`
+
 export default styled.div`
 	.article-header{
         width: 100%;
@@ -43,7 +67,7 @@ export default styled.div`
         margin-right: 25px;
     }
     .recommend-container{
-    
+        position: relative;
     }
     
     

@@ -13,6 +13,8 @@ export default styled.div`
 	top: 0;
 	z-index: 800;
 	flex: none;
+	transition: all linear 0.12s;
+	box-shadow: ${ ({ isTop = true }) => isTop ? "unset" : "0 2px 10px rgba(0, 0, 0, .05)"};
 	
 	.header-body {
 		height: 100%;
@@ -63,6 +65,7 @@ export default styled.div`
 		background-color: #FFF;
 		align-items: center;
 		justify-content: center;
+		transition: all linear 0.2s;
 		
 		li {
 			height: 50px;
@@ -130,6 +133,27 @@ export default styled.div`
 			margin: 0;
 		}
 	}
+	
+	.header-mask {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0);
+        transition: all linear 0.2s;
+        margin-bottom: auto;
+        top: 0;
+        left: 0;
+        z-index: -1000;
+        display: none;
+    }
+    .header-mask-active{
+        transition: all linear 0.2s;
+        animation-name: Test;
+        animation-duration: 0.2s;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
+        display: inline-block;
+    }
 	
 	@media (max-width: ${ ScreenXs }) {
 		.header-body {
