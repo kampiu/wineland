@@ -31,7 +31,6 @@ function Articles ({ ArticleList = [], AppConfig = {}, ...props }) {
 					})
 				}
 			</ModuleContainer>
-		
 		</>
 	)
 }

@@ -1,0 +1,54 @@
+.layout {
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.scroll-container {
+		height: 100%;
+
+		:global {
+			.simplebar-content {
+				padding-top: 60px;
+			}
+		}
+	}
+
+	&-wrapper {
+		padding-bottom: 60px;
+		flex-direction: column !important;
+		padding-top: 60px;
+		margin: 0 auto;
+		flex: auto;
+
+		@media @screen-xs {
+			width: 98%;
+		}
+
+		@media @screen-sm {
+			width: 98%;
+		}
+
+		@media @screen-md {
+			width: 98%;
+		}
+
+		// 992
+		@media @screen-lg {
+			width: 98%;
+		}
+
+		// 1200
+		@media @screen-xl {
+			width: 100%;
+			max-width: 1200px;
+		}
+
+		// 1920
+		@media @screen-xxl {
+			width: 1200px;
+		}
+	}
+}

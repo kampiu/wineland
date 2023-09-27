@@ -1,31 +1,42 @@
-const LodashModuleReplacementPlugin = require("lodash-webpack-plugin")
-const path = require("path")
+/** @type {import("next").NextConfig} */
+const withLess = require("next-with-less")
 
-const DevelopmentConfig = require("./config/config.development")
-const ProductionConfig = require("./config/config.production")
-
-const resolve = (dir) => path.resolve(__dirname, dir)
-
-const DefaultConfig = {
-	productionBrowserSourceMaps: true,      // 开启 SourceMap
+const nextConfig = withLess({
 	images: {
-		domains: ["image.billson.club"],
+		domains: [ "image.billson.club" ],
 	},
-	env: {
-		// NEXT_PUBLIC_API: "aaaaa"
+	lessLoaderOptions: {
+		additionalData: `@import "@/assets/styles/variables.less";@import "@/assets/styles/mixins.less";`,
+		lessOptions: {
+			javascriptEnabled: true,
+			localIdentName: "[name]_[hash:base64:10]",
+		},
 	},
-	webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-		
-		config.plugins.push(new LodashModuleReplacementPlugin())
+	webpack: (config) => {
+		const rules = config.module.rules
+			.find((rule) => typeof rule.oneOf === "object")
+			.oneOf.filter((rule) => Array.isArray(rule.use))
+		rules.forEach((rule) => {
+			rule.use.forEach((moduleLoader) => {
+				if (
+					moduleLoader.loader !== undefined &&
+					moduleLoader.loader.includes("css-loader") &&
+					typeof moduleLoader.options.modules === "object"
+				) {
+					moduleLoader.options = {
+						...moduleLoader.options,
+						modules: {
+							...moduleLoader.options.modules,
+							// This is where we allow camelCase class names
+							exportLocalsConvention: "camelCase",
+						},
+					}
+				}
+			})
+		})
 		
 		return config
 	},
-}
+})
 
-module.exports = process.env.NODE_ENV === "production" ? {
-	...DefaultConfig,
-	...ProductionConfig,
-} : {
-	...DefaultConfig,
-	...DevelopmentConfig,
-}
+module.exports = nextConfig

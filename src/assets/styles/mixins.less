@@ -1,0 +1,20 @@
+.fontBreak (@line, @lineHeight: 20px) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: @line;
+	line-height: @lineHeight;
+}
+
+.animation-slide-in-up {
+	@keyframes slideInUp {
+		0% {
+			opacity: 0;
+			transform: translate(0, 12%);
+		}
+		100% {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+	}
+}

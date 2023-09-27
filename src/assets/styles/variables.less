@@ -1,0 +1,20 @@
+//@var large-screen: screen and (min-width: 1200px);
+
+@screen-xs-size: 480px;
+@screen-sm-size: 768px;
+@screen-md-size: 992px;
+@screen-lg-size: 1200px;
+@screen-xl-size: 1920px;
+
+// max 480px
+@screen-xs: ~"screen and (max-width: @{screen-xs-size})";
+// min 480px
+@screen-sm: ~"screen and (min-width: @{screen-xs-size})";
+// min 768px
+@screen-md: ~"screen and (min-width: @{screen-sm-size})";
+// min 992px
+@screen-lg: ~"screen and (min-width: @{screen-md-size})";
+// min 1200px
+@screen-xl: ~"screen and (min-width: @{screen-lg-size})";
+// min 1920px
+@screen-xxl: ~"screen and (min-width: @{screen-xl-size})";
